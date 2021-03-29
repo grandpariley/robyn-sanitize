@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script type="text/javascript">
+        function calculateAndDisplay(value) {
+            if (!value) {
+                return "";
+            }
+            document.getElementById('result').innerHTML = value.split('\n')
+                .filter(val => Boolean(val))
+                .map(val => val.replace(/,/g, 'a8de8b05557346b79a9f5ce5ca14dd8a'))
+                .map(removeStartingNumbers)
+                .map(insertDelimiter)
+                .toString()
+                .replace(/< ;15/g, ';< 15')
+                .replace(/,/g, '<br>')
+                .replace(/a8de8b05557346b79a9f5ce5ca14dd8a/g, ',');
+        }
+
+        function removeStartingNumbers(str) {
+            while (str && str.charAt(0).match(/\d/)) {
+                str = str.substr(1, str.length);
+            }
+            return str;
+        }
+
+        function insertDelimiter(str) {
+            if (!str) {
+                return "";
+            }
+            let index = str.length - 1;
+            while (index && str && str.charAt(index).match(/\d/)) {
+                index--;
+            }
+            if (!index) {
+                return str;
+            }
+            return str.substr(0, index + 1) + ';' + str.substr(index + 1, str.length);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="flex justify-center mt-4">
+        <span class="font-semibold text-2xl">Farmer Jane Keyword Search Data Sanitizer</span>
+    </div>
+    <div class="flex justify-center mt-4">
+        <textarea class="w-1/2 h-48 border border-gray-400 rounded-sm" id="inputText"></textarea>
+    </div>
+    <div class="flex justify-center mt-4">
+        <button class="bg-green-500 hover:bg-green-700 text-white rounded-sm cursor-pointer p-2 text-lg"
+            onclick="calculateAndDisplay(document.getElementById('inputText').value)">Sanitize it</button>
+    </div>
+    <div class="flex justify-center mt-4">
+        <div class="text-lg font-light tracking-wide mt-4" id="result"></div>
+    </div>
+</body>
+
+</html>
