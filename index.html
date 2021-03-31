@@ -22,6 +22,7 @@
         }
 
         function removeStartingNumbers(str) {
+            str = str.trim();
             while (str && str.charAt(0).match(/\d/)) {
                 str = str.substr(1, str.length);
             }
