@@ -16,7 +16,7 @@
                 .map(removeStartingNumbers)
                 .map(insertDelimiter)
                 .toString()
-                .replace(/< ;15/g, ';1')
+                .filter(val => !val.match(/< ;15/g))
                 .replace(/,/g, '<br>')
                 .replace(/a8de8b05557346b79a9f5ce5ca14dd8a/g, ',');
         }
