@@ -34,7 +34,7 @@
                 return "";
             }
             let index = str.length - 1;
-            while (index && str && str.charAt(index).match(/\d/)) {
+            while (index && str && (str.charAt(index).match(/\d/) || str.charAt(index).match(/,/))) {
                 index--;
             }
             if (!index) {
